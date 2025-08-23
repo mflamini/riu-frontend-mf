@@ -1,0 +1,190 @@
+.body {
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 70vh;
+  gap: 10px;
+  > div {
+    flex: 0 0 180px;
+    border-radius: 0.5rem;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+    box-shadow: 1px 5px 15px #1e0e3e;
+    position: relative;
+    overflow: hidden;
+
+    &:nth-of-type(1) {
+      background: url("/spiderman.jpg") no-repeat 50% / cover;
+    }
+    &:nth-of-type(2) {
+      background: url("/ironman.jpg") no-repeat 50% / cover;
+    }
+    &:nth-of-type(3) {
+      background: url("/capitan_america.jpg") no-repeat 50% / cover;
+    }
+    &:nth-of-type(4) {
+      background: url("/thor.jpg") no-repeat 50% / cover;
+    }
+    &:nth-of-type(5) {
+      background: url("/hulk.jpg") no-repeat 50% / cover;
+    }
+    &:nth-of-type(6) {
+      background: url("/black_widow.jpg") no-repeat 50% / cover;
+    }
+    &:nth-of-type(7) {
+      background: url("/black_panther.jpg") no-repeat 50% / cover;
+    }
+    &:nth-of-type(8) {
+      background: url("/doctor_strange.jpg") no-repeat 50% / cover;
+    }
+
+    .content {
+      font-size: 1.5rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      opacity: 0;
+      flex-direction: column;
+      height: 100%;
+      justify-content: flex-end;
+      background: rgb(2, 2, 46);
+      background: linear-gradient(
+        0deg,
+        rgba(2, 2, 46, 0.6755077030812324) 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: translatey(100%);
+      transition: opacity 0.5s ease-in-out, transform 0.5s 0.2s;
+      visibility: hidden;
+
+      span {
+        display: block;
+        margin-top: 5px;
+        font-size: 1.2rem;
+      }
+    }
+
+    &:hover {
+      flex: 0 0 250px;
+      box-shadow: 1px 3px 15px #7645d8;
+      transform: translatey(-30px);
+    }
+
+    &:hover .content {
+      opacity: 1;
+      transform: translatey(0%);
+      visibility: visible;
+    }
+  }
+}
+
+/* RESOLUCIÓN PRINCIPAL 1920x911 */
+@media (width: 1920px) and (height: 911px) {
+  .container {
+    height: 65vh;
+    gap: 12px;
+
+    > div {
+      flex: 0 0 160px;
+
+      &:hover {
+        flex: 0 0 220px;
+        transform: translatey(-25px);
+      }
+
+      .content {
+        font-size: 1.4rem;
+        padding: 12px;
+
+        span {
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+}
+
+/* Notebooks HD (1600x900) */
+@media (max-width: 1600px) and (max-height: 900px) {
+  .container {
+    height: 60vh;
+    gap: 8px;
+
+    > div {
+      flex: 0 0 140px;
+
+      &:hover {
+        flex: 0 0 190px;
+        transform: translatey(-20px);
+      }
+
+      .content {
+        font-size: 1.3rem;
+        padding: 10px;
+
+        span {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+/* Notebooks 1366x768 */
+@media (max-width: 1366px) and (max-height: 768px) {
+  .container {
+    height: 55vh;
+    gap: 6px;
+
+    > div {
+      flex: 0 0 120px;
+
+      &:hover {
+        flex: 0 0 170px;
+        transform: translatey(-15px);
+      }
+
+      .content {
+        font-size: 1.1rem;
+        padding: 8px;
+
+        span {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+
+/* Pantallas 2K/QHD (2560x1440) */
+@media (min-width: 2560px) {
+  .container {
+    height: 75vh;
+    gap: 20px;
+
+    > div {
+      flex: 0 0 220px;
+
+      &:hover {
+        flex: 0 0 300px;
+        transform: translatey(-35px);
+      }
+
+      .content {
+        font-size: 1.8rem;
+        padding: 20px;
+
+        span {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}

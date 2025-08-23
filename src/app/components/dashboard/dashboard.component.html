@@ -1,0 +1,33 @@
+<div class="dashboard">
+  <header class="header">
+    <div>
+      <img class="logo" src="/logohero.png" alt="" />
+    </div>
+    <div class="actions">
+      <button class="btn logout" (click)="logout()">Salir</button>
+    </div>
+  </header>
+  <div class="main">
+    <aside class="sidebar">
+      <nav>
+        @for (item of navItems; track $index) {
+        <a
+          [routerLink]="item.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <img
+            [src]="item.icon"
+            alt="{{ item.label }}"
+            width="20"
+            height="20"
+          />
+          {{ item.label }} </a
+        >}
+      </nav>
+    </aside>
+    <section class="content">
+      <router-outlet></router-outlet>
+    </section>
+  </div>
+</div>
