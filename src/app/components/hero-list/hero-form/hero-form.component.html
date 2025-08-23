@@ -1,0 +1,49 @@
+<div class="card">
+  <h2>{{ hero() ? "Editar Héroe" : "Nuevo Héroe" }}</h2>
+  <form [formGroup]="heroForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Nombre</label>
+      <input type="text" formControlName="name" placeholder="Ej: SUPERMAN" />
+      @if (heroForm.get('name')?.touched && heroForm.get('name')?.invalid) {
+      <div class="error">
+        @if (heroForm.get('name')?.hasError('required')) {
+        <span>El nombre es obligatorio</span>
+        } @if (heroForm.get('name')?.hasError('minlength')) {
+        <span>Debe tener al menos 3 caracteres</span>
+        }
+      </div>
+      }
+    </div>
+    <div class="form-group">
+      <label>Poder</label>
+      <input
+        type="text"
+        formControlName="power"
+        placeholder="Ej: Super fuerza, vuelo"
+      />
+      @if (heroForm.get('power')?.touched && heroForm.get('power')?.invalid) {
+      <div class="error">
+        @if (heroForm.get('power')?.hasError('required')) {
+        <span>El poder es obligatorio</span>
+        } @if (heroForm.get('power')?.hasError('minlength')) {
+        <span>Debe tener al menos 3 caracteres</span>
+        }
+      </div>
+      }
+    </div>
+    <div class="form-group">
+      <label>Descripción (opcional)</label>
+      <textarea
+        formControlName="description"
+        rows="3"
+        placeholder="Ej: El hombre de acero"
+      ></textarea>
+    </div>
+    <div class="actions">
+      <button type="button" (click)="onCancel()">Cancelar</button>
+      <button type="submit" [disabled]="heroForm.invalid">
+        {{ hero() ? "Actualizar" : "Crear" }}
+      </button>
+    </div>
+  </form>
+</div>

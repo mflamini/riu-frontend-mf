@@ -1,0 +1,88 @@
+<div class="container">
+  <h1>Gestión de Súper Héroes</h1>
+  <div class="search-container">
+    <input
+      type="text"
+      class="search-field"
+      placeholder="Buscar héroe..."
+      [(ngModel)]="searchTerm"
+      (input)="search($event)"
+      appUppercase
+    />
+    <button class="add-btn" (click)="openAddHero()">Agregar héroe</button>
+  </div>
+  <div class="table-container">
+    <div class="section-table">
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Poder</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let hero of filteredHeroes">
+            <td>{{ hero.id }}</td>
+            <td>{{ hero.name }}</td>
+            <td>{{ hero.power }}</td>
+            <td class="actions-td">
+              <button (click)="editHero(hero)">Editar</button>
+              <button (click)="deleteHero(hero)">Eliminar</button>
+            </td>
+          </tr>
+          @if(filteredHeroes.length === 0) {
+          <tr>
+            <td colspan="4" class="no-data">No se encontraron héroes</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+      <div class="paginator">
+        <button (click)="prevPage()" [disabled]="pageIndex === 0">
+          Anterior
+        </button>
+        <span>Página {{ pageIndex + 1 }}</span>
+        <button
+          (click)="nextPage()"
+          [disabled]="filteredHeroes.length < pageSize"
+        >
+          Siguiente
+        </button>
+        <label>
+          Filas por página:
+          <select [(ngModel)]="pageSize" (change)="changePageSize()">
+            <option *ngFor="let size of pageSizes" [value]="size">
+              {{ size }}
+            </option>
+          </select>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+@if (showModal) {
+<div>
+  <div class="modal-backdrop" (click)="closeModal()"></div>
+  <div class="modal">
+    <app-hero-form
+      [hero]="selectedHero"
+      (save)="onSaveHero($event)"
+      (cancel)="closeModal()"
+    ></app-hero-form>
+  </div>
+</div>
+} @if (showConfirmDialog) {
+<div>
+  <div class="modal-backdrop" (click)="closeModal()"></div>
+  <div class="modal-confirm">
+    <app-confirm-dialog
+      [message]="'¿Estás seguro de eliminar a ' + heroToDelete?.name + '?'"
+      (confirmAction)="handleDeleteConfirmation($event)"
+    ></app-confirm-dialog>
+  </div>
+</div>
+
+}
+<app-spinner></app-spinner>
