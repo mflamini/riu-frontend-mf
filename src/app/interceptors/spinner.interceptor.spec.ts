@@ -5,29 +5,29 @@ import {
 } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { LoadingInterceptor } from './loading.interceptor';
-import { LoadingService } from '../services/loading-service/loading.service';
+import { SpinnerInterceptor } from './spinner.interceptor';
+import { SpinnerService } from '../services/spinner/spinner.service';
 
-describe('LoadingInterceptor', () => {
+describe('SpinnerInterceptor', () => {
   let http: HttpClient;
   let httpMock: HttpTestingController;
-  let loadingService: LoadingService;
+  let spinnerService: SpinnerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        LoadingService,
-        provideHttpClient(withInterceptors([LoadingInterceptor])),
+        SpinnerService,
+        provideHttpClient(withInterceptors([SpinnerInterceptor])),
         provideHttpClientTesting(),
       ],
     });
 
     http = TestBed.inject(HttpClient);
     httpMock = TestBed.inject(HttpTestingController);
-    loadingService = TestBed.inject(LoadingService);
+    spinnerService = TestBed.inject(SpinnerService);
 
-    spyOn(loadingService, 'show').and.callThrough();
-    spyOn(loadingService, 'hide').and.callThrough();
+    spyOn(spinnerService, 'show').and.callThrough();
+    spyOn(spinnerService, 'hide').and.callThrough();
   });
 
   afterEach(() => {
@@ -38,23 +38,23 @@ describe('LoadingInterceptor', () => {
     http.get('/test').subscribe();
 
     const req = httpMock.expectOne('/test');
-    expect(loadingService.show).toHaveBeenCalled();
+    expect(spinnerService.show).toHaveBeenCalled();
 
     req.flush({});
     tick();
 
-    expect(loadingService.hide).toHaveBeenCalled();
+    expect(spinnerService.hide).toHaveBeenCalled();
   }));
 
   it('should hide even if request errors', fakeAsync(() => {
     http.get('/error').subscribe({ error: () => {} });
 
     const req = httpMock.expectOne('/error');
-    expect(loadingService.show).toHaveBeenCalled();
+    expect(spinnerService.show).toHaveBeenCalled();
 
     req.flush('Network error', { status: 500, statusText: 'Server Error' });
     tick();
 
-    expect(loadingService.hide).toHaveBeenCalled();
+    expect(spinnerService.hide).toHaveBeenCalled();
   }));
 });

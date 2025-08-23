@@ -4,15 +4,14 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
-import { LoadingInterceptor } from './interceptors/loading.interceptor';
-
 import { routes } from './app.routes';
+import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideAnimations(),
-    provideHttpClient(withInterceptors([LoadingInterceptor])),
+    provideHttpClient(withInterceptors([SpinnerInterceptor])),
     importProvidersFrom(MatSnackBarModule, MatDialogModule),
   ],
 };

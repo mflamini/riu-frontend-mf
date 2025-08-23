@@ -81,5 +81,8 @@ export class SpinnerComponent {
 
   constructor() {
     this.loading$ = this._spinnerService.loading$;
+    this.loading$.subscribe((value) =>
+      console.log('[SpinnerComponent] loading =', value)
+    );
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { BehaviorSubject, delay, Observable, of, throwError } from 'rxjs';
 import { Hero } from '../../models/hero.model';
 
 @Injectable({
@@ -167,7 +167,7 @@ export class HeroService {
   }
 
   getAllHeroes(): Observable<Hero[]> {
-    return of([...this.heroes]);
+    return of([...this.heroes]).pipe(delay(500));
   }
 
   searchHeroes(term: string): Observable<Hero[]> {
@@ -192,12 +192,12 @@ export class HeroService {
     };
     this.heroes.push(newHero);
     this.saveToLocalStorage();
-    return of(newHero);
+    return of(newHero).pipe(delay(500));
   }
   getHeroById(id: number): Observable<Hero> {
     const hero = this.heroes.find((h) => h.id === id);
     if (!hero) return throwError(() => new Error('Hero not found'));
-    return of(hero);
+    return of(hero).pipe(delay(500));
   }
 
   updateHero(id: number, heroData: Partial<Hero>): Observable<Hero> {
@@ -210,7 +210,7 @@ export class HeroService {
       updatedAt: new Date(),
     };
     this.saveToLocalStorage();
-    return of({ ...this.heroes[index] });
+    return of({ ...this.heroes[index] }).pipe(delay(500));
   }
 
   deleteHero(id: number): Observable<boolean> {
@@ -219,6 +219,6 @@ export class HeroService {
 
     this.heroes.splice(index, 1);
     this.saveToLocalStorage();
-    return of(true);
+    return of(true).pipe(delay(500));
   }
 }
