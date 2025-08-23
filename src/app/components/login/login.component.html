@@ -1,0 +1,41 @@
+<div class="login">
+  <div class="container">
+    <!-- Asociamos el form al FormGroup -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h2>Iniciar Sesión</h2>
+
+      <div class="input-field">
+        <i class="fas fa-user"></i>
+        <!-- formControlName conecta el input con el FormGroup -->
+        <input type="text" formControlName="username" />
+        <label>Usuario</label>
+        @if (loginForm.get('username')?.touched &&
+        loginForm.get('username')?.invalid) {
+        <div class="error-message">El usuario es requerido</div>
+        }
+      </div>
+
+      <div class="input-field">
+        <i class="fas fa-lock"></i>
+        <input type="password" formControlName="password" />
+        <label>Contraseña</label>
+        @if (loginForm.get('password')?.touched &&
+        loginForm.get('password')?.invalid) {
+        <div class="error-message">La contraseña es requerida</div>
+        }
+      </div>
+
+      <button type="submit" [disabled]="isLoading">
+        @if (isLoading) {
+        <span class="loading-spinner"></span>
+        } Iniciar Sesión
+      </button>
+
+      @if (errorMessage) {
+      <div class="error-message">
+        {{ errorMessage }}
+      </div>
+      }
+    </form>
+  </div>
+</div>
