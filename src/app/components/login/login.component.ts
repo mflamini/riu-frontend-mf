@@ -21,11 +21,13 @@ import {
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  //INJECTIONS
   private formBuilder = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
+  //VARIABLES
   loginForm: FormGroup;
   isLoading = false;
   errorMessage = '';

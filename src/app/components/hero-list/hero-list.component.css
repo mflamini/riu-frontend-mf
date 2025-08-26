@@ -97,27 +97,30 @@ h1 {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-/* Ancho de columnas */
 .custom-table th:nth-child(1),
 .custom-table td:nth-child(1) {
-  width: 10%;
+  width: 8%;
 }
-
 .custom-table th:nth-child(2),
 .custom-table td:nth-child(2) {
-  width: 30%;
+  width: 24%;
 }
-
 .custom-table th:nth-child(3),
 .custom-table td:nth-child(3) {
-  width: 35%;
+  width: 28%;
 }
-
 .custom-table th:nth-child(4),
 .custom-table td:nth-child(4) {
   width: 25%;
   white-space: normal;
+}
+.custom-table th:nth-child(5),
+.custom-table td:nth-child(5) {
+  width: 15%;
+}
+
+.actions-td {
+  white-space: nowrap;
 }
 
 .custom-table th {
@@ -641,20 +644,21 @@ select option:hover {
   .custom-table td:nth-child(1) {
     width: 8%;
   }
-
   .custom-table th:nth-child(2),
   .custom-table td:nth-child(2) {
-    width: 28%;
+    width: 26%;
   }
-
   .custom-table th:nth-child(3),
   .custom-table td:nth-child(3) {
-    width: 32%;
+    width: 28%;
   }
-
   .custom-table th:nth-child(4),
   .custom-table td:nth-child(4) {
-    width: 32%;
+    width: 23%;
+  }
+  .custom-table th:nth-child(5),
+  .custom-table td:nth-child(5) {
+    width: 15%;
   }
 }
 

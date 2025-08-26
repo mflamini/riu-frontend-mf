@@ -3,7 +3,12 @@
   <form [formGroup]="heroForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label>Nombre</label>
-      <input type="text" formControlName="name" placeholder="Ej: SUPERMAN" />
+      <input
+        type="text"
+        formControlName="name"
+        placeholder="Ej: SUPERMAN"
+        appUppercase
+      />
       @if (heroForm.get('name')?.touched && heroForm.get('name')?.invalid) {
       <div class="error">
         @if (heroForm.get('name')?.hasError('required')) {

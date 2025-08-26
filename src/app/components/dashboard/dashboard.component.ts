@@ -18,6 +18,7 @@ interface NavItem {
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
+  //INJECTIONS
   private _authService = inject(AuthService);
   private _router = inject(Router);
 

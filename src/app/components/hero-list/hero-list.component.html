@@ -19,6 +19,7 @@
             <th>ID</th>
             <th>Nombre</th>
             <th>Poder</th>
+            <th>Descripción</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -27,6 +28,7 @@
             <td>{{ hero.id }}</td>
             <td>{{ hero.name }}</td>
             <td>{{ hero.power }}</td>
+            <td>{{ hero.description }}</td>
             <td class="actions-td">
               <button (click)="editHero(hero)">Editar</button>
               <button (click)="deleteHero(hero)">Eliminar</button>
@@ -34,7 +36,7 @@
           </tr>
           @if(filteredHeroes.length === 0) {
           <tr>
-            <td colspan="4" class="no-data">No se encontraron héroes</td>
+            <td colspan="5" class="no-data">No se encontraron héroes</td>
           </tr>
           }
         </tbody>

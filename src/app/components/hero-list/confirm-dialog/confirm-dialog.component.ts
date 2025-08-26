@@ -1,4 +1,4 @@
-import { Component, EventEmitter, input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./confirm-dialog.component.css'],
 })
 export class ConfirmDialogComponent {
+  //INPUTS / OUTPUTS
   message = input<string>('¿Estás seguro?');
   confirmAction = output<boolean>();
 

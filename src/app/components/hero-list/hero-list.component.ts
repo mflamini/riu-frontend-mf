@@ -25,9 +25,11 @@ import { UppercaseDirective } from '../../directives/uppercase.directive';
   standalone: true,
 })
 export class HeroListComponent implements OnInit {
+  //INJECTIONS
   private heroService = inject(HeroService);
   private spinnerService = inject(SpinnerService);
 
+  //VARIABLES
   heroes: Hero[] = [];
   filteredHeroes: Hero[] = [];
   searchTerm = '';
@@ -47,7 +49,6 @@ export class HeroListComponent implements OnInit {
 
   loadHeroes(): void {
     this.spinnerService.show();
-
     this.heroService
       .getAllHeroes()
       .pipe(finalize(() => this.spinnerService.hide()))

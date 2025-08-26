@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
+  //CARROUSEL IMAGES
   images = [
     'https://picsum.photos/id/1018/1000/600/',
     'https://picsum.photos/id/1015/1000/600/',
@@ -23,8 +24,6 @@ export class HomeComponent {
 
   ngOnInit() {
     this.startCarousel();
-    console.log(window.innerWidth);
-    console.log(window.innerHeight);
   }
 
   ngOnDestroy() {
