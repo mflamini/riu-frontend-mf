@@ -97,6 +97,7 @@ describe('LoginComponent', () => {
   }));
 
   it('should show error message on login error', fakeAsync(() => {
+    const consoleErrorSpy = spyOn(console, 'error');
     const credentials: LoginCredentials = {
       username: 'admin',
       password: 'admin123',
@@ -114,6 +115,11 @@ describe('LoginComponent', () => {
       'Error de conexión. Intente nuevamente.'
     );
     expect(routerSpy.navigate).not.toHaveBeenCalled();
+
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
+      'Login error:',
+      jasmine.any(Error)
+    );
   }));
 
   it('should show username error message when touched and invalid', () => {
