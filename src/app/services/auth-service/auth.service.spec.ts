@@ -7,6 +7,8 @@ import { take } from 'rxjs/operators';
 describe('AuthService', () => {
   let service: AuthService;
   let storageService: StorageService;
+  let setItemSpy: jasmine.Spy;
+  let removeItemSpy: jasmine.Spy;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -21,14 +23,22 @@ describe('AuthService', () => {
     service = TestBed.inject(AuthService);
   });
 
+  afterEach(() => {
+    if (setItemSpy) {
+      setItemSpy.calls.reset();
+    }
+    if (removeItemSpy) {
+      removeItemSpy.calls.reset();
+    }
+  });
+
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
   it('should login successfully with valid credentials', (done) => {
     const creds: LoginCredentials = { username: 'admin', password: 'admin123' };
-
-    spyOn(localStorage, 'setItem').and.callFake(() => {});
+    setItemSpy = spyOn(localStorage, 'setItem').and.callFake(() => {});
 
     service
       .login(creds)
@@ -44,8 +54,9 @@ describe('AuthService', () => {
         done();
       });
   });
-
   it('should fail login with invalid credentials', (done) => {
+    service.logout();
+
     const creds: LoginCredentials = { username: 'admin', password: 'wrong' };
 
     service
@@ -60,7 +71,7 @@ describe('AuthService', () => {
   });
 
   it('should logout properly', () => {
-    spyOn(localStorage, 'removeItem').and.callFake(() => {});
+    removeItemSpy = spyOn(localStorage, 'removeItem').and.callFake(() => {});
     service.logout();
     expect(service.getCurrentUser()).toBeNull();
     expect(localStorage.removeItem).toHaveBeenCalledWith('currentUser');
